@@ -1,0 +1,49 @@
+Select 
+  E.a, 
+  E.b, 
+  E.c, 
+  E.d, 
+  E.e, 
+  E.f, 
+  E.g, 
+  E.h, 
+  E.i, 
+  E.j, 
+  E.k, 
+  E.l, 
+  I.m, 
+  I.n, 
+  I.o, 
+  I.p, 
+  C.q 
+from 
+  (
+    Event E 
+    inner join cmacmcasefolder i on e.a = i.this
+  ) 
+  left join classdefiniton c on e.b = c.this 
+where 
+  Date(E.c) >= '2021-10-10' 
+  AND Date(E.c) < '2021-10-10' 
+  AND (
+    E.f in(
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda', 
+      'dasgfda', 'fega', 'dasgfa', 'sdafda'
+    )
+  ) 
+  AND (
+    I.o like 'apple%' 
+    OR I.o like 'banana%'
+  ) 
+ORDER BY 
+  E.g
