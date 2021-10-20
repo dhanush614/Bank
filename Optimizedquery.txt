@@ -1,0 +1,96 @@
+SELECT
+        e_a,
+        e_b,
+        e_c,
+        e_d,
+        e_e,
+        e_f,
+        e_g,
+        e_h,
+        e_i,
+        e_j,
+        e_k,
+        e_l,
+        i_m,
+        i_n,
+        i_o,
+        i_p,
+        c_q 
+    FROM
+        ((SELECT
+            E.a AS e_a,
+            E.b AS e_b,
+            E.c AS e_c,
+            E.d AS e_d,
+            E.e AS e_e,
+            E.f AS e_f,
+            E.g AS e_g,
+            E.h AS e_h,
+            E.i AS e_i,
+            E.j AS e_j,
+            E.k AS e_k,
+            E.l AS e_l,
+            I.m AS i_m,
+            I.n AS i_n,
+            I.o AS i_o,
+            I.p AS i_p,
+            C.q AS c_q 
+        FROM
+            (Event E 
+        INNER JOIN
+            cmacmcasefolder i 
+                ON e.a = i.this
+            ) 
+    LEFT JOIN
+        classdefiniton c 
+            ON e.b = c.this 
+    WHERE
+        E.c >= '2021-10-10 00:00:00' 
+        AND E.c < '2021-10-10 00:00:00' 
+        AND (
+            E.f IN (
+                'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda'
+            )
+        ) 
+        AND (
+            I.o LIKE 'banana%'
+        ) 
+    ORDER BY
+        E.g) 
+UNION
+DISTINCT (SELECT
+    E.a AS e_a,
+    E.b AS e_b,
+    E.c AS e_c,
+    E.d AS e_d,
+    E.e AS e_e,
+    E.f AS e_f,
+    E.g AS e_g,
+    E.h AS e_h,
+    E.i AS e_i,
+    E.j AS e_j,
+    E.k AS e_k,
+    E.l AS e_l,
+    I.m AS i_m,
+    I.n AS i_n,
+    I.o AS i_o,
+    I.p AS i_p,
+    C.q AS c_q 
+FROM
+    (Event E 
+INNER JOIN
+    cmacmcasefolder i 
+        ON e.a = i.this) 
+LEFT JOIN
+    classdefiniton c 
+        ON e.b = c.this 
+WHERE
+    E.c >= '2021-10-10 00:00:00' 
+    AND E.c < '2021-10-10 00:00:00' 
+    AND (E.f IN ('dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda', 'dasgfda', 'fega', 'dasgfa', 'sdafda')) 
+    AND (I.o LIKE 'apple%') 
+ORDER BY
+    E.g)
+) AS union1 
+ORDER BY
+union1.e_g
