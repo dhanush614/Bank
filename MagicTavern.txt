@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static boolean subsetSum(ArrayList<Integer> inputArray, ArrayList<Integer> inputSubset, int arraySize, int subSize, int total, int nodeCount, int expectedSum)
+    {
+        // System.out.println("Subset::"+inputSubset+" Total:"+total+" ExpSum:"+expectedSum);
+        if(total ==  expectedSum)
+        {
+            return true;
+        }
+        else {
+            for(int i = nodeCount ; i < arraySize ; i++)
+            {
+                inputSubset.set(subSize, inputArray.get(i));
+                if(subsetSum(inputArray, inputSubset, arraySize, subSize+1, total+inputArray.get(i), i+1, expectedSum))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public static boolean findSubset(ArrayList<Integer> inputArray, int arraySize, int expectedSum)
+    {
+        return subsetSum(inputArray, new ArrayList<Integer>(Collections.nCopies(arraySize, 0)),arraySize,0,0,0,expectedSum);
+    }
+    public static boolean isBestBeer(int tapNumber){
+        int divisiorsTotalCount = 0;
+        ArrayList<Integer> divisiorArrayList = new ArrayList<>();
+        for(int i = 1 ; i < tapNumber ; i++)
+        {
+            if(tapNumber % i == 0)
+            {
+                divisiorsTotalCount += i;
+                divisiorArrayList.add(i);
+            }
+        }
+        if(divisiorsTotalCount> tapNumber){       //Crit1 Check
+            return !findSubset(divisiorArrayList,divisiorArrayList.size(),tapNumber);      //Crit2 Check
+        }
+        return false;
+    }
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        for(int i = 1 ; i <= 100; i++)
+        {
+            if(isBestBeer(i))
+            {
+                System.out.println(i);                
+            }
+        }
+    }
+}
