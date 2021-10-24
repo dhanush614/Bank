@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Solution {
+	public static boolean subsetSum(ArrayList<Integer> inputArray, ArrayList<Integer> inputSubset, int arraySize,
+			int subSize, int total, int nodeCount, int expectedSum) {
+		if (total == expectedSum) {
+			return true;
+		} else {
+			for (int i = nodeCount; i < arraySize; i++) {
+				inputSubset.set(subSize, inputArray.get(i));
+				if (subsetSum(inputArray, inputSubset, arraySize, subSize + 1, total + inputArray.get(i), i + 1,
+						expectedSum)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean isBestBeer(int tapNumber) {
+		int divisiorsTotalCount = 0;
+		ArrayList<Integer> divisiorArrayList = new ArrayList<>();
+		for (int i = 1; i < tapNumber; i++) {
+			if (tapNumber % i == 0) {
+				divisiorsTotalCount += i;
+				divisiorArrayList.add(i);
+			}
+		}
+		if (divisiorsTotalCount > tapNumber) { // Crit1 Check
+			int divisiorArrayListSize = divisiorArrayList.size();
+			return !subsetSum(divisiorArrayList, new ArrayList<Integer>(Collections.nCopies(divisiorArrayListSize, 0)),
+					divisiorArrayListSize, 0, 0, 0, tapNumber); // Crit2 Check
+		}
+		return false;
+	}
+
+	public static void main(String args[]) throws Exception {
+		for (int i = 1; i <= 100; i++) {
+			if (isBestBeer(i)) {
+				System.out.println(i);
+			}
+		}
+	}
+}
